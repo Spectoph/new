@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapStar Agency | Snapchat Unleashed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ffeb3b, #ff4081, #00e5ff, #8e24aa);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+        nav h1 {
+            font-size: 28px;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ff4081;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            color: #00e5ff;
+            transform: scale(1.1);
+        }
+        .email {
+            font-size: 16px;
+            color: #ffeb3b;
+            text-shadow: 0 0 5px #ff4081;
+        }
+        section {
+            padding: 80px 15px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px #fff;
+            animation: bounce 2s infinite;
+        }
+        p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            padding: 20px 40px; /* Bigger button */
+            background: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 20px; /* Bigger font */
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            margin-top: 25px;
+            box-shadow: 0 0 20px #ff4081;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1611162617213-7d15d6725457?q=80&w=1974&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            font-size: 24px; /* Bigger text */
+            background: #00e5ff;
+            color: #000;
+            padding: 20px;
+            border-radius: 50%;
+            width: 160px; /* Bigger circles */
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: bounceIn 1s ease;
+            box-shadow: 0 0 15px #00e5ff;
+            line-height: 1.2; /* Tighter spacing for multi-line */
+        }
+        .packages, .prices, .story, .about, .testimonials, .cta, .contact-form {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 100%;
+            padding: 30px 15px;
+        }
+        .card {
+            display: block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 380px;
+            animation: fadeIn 1s ease-in;
+            transition: transform 0.3s;
+        }
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 16px;
+            line-height: 1.4;
+            text-align: left;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .packages .card-container,
+        .prices .card-container,
+        .about .card-container,
+        .testimonials .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .prices .card {
+            width: 100%;
+            max-width: 340px;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .about .card {
+            width: 100%;
+            max-width: 340px;
+            padding: 20px;
+            font-size: 18px;
+        }
+        .testimonials .card {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .testimonials .card.small {
+            max-width: 250px;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .testimonials .card.large {
+            max-width: 350px;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .stars {
+            color: #ffeb3b;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .rainbow-text {
+            background: linear-gradient(to right, #ffeb3b, #ff4081, #00e5ff, #8e24aa);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbow 5s infinite;
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+        }
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .contact-form button {
+            padding: 12px;
+            background: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .contact-form button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+                text-align: center;
+            }
+            nav h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+                margin: 5px 0;
+            }
+            nav a {
+                font-size: 14px;
+                padding: 5px;
+            }
+            .email {
+                font-size: 14px;
+                margin-top: 5px;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            .stats {
+                gap: 15px;
+            }
+            .stat {
+                width: 120px;
+                height: 120px;
+                font-size: 20px;
+                padding: 15px;
+            }
+            section {
+                padding: 60px 10px;
+                min-height: auto;
+            }
+            .card h2 {
+                font-size: 20px;
+            }
+            .card p {
+                font-size: 14px;
+            }
+            .prices .card, .about .card {
+                max-width: 100%;
+                font-size: 18px;
+            }
+            .testimonials .card {
+                max-width: 100%;
+                font-size: 14px;
+            }
+            .testimonials .card.large {
+                max-width: 100%;
+                font-size: 16px;
+            }
+            .testimonials .card.small {
+                max-width: 100%;
+                font-size: 13px;
+            }
+            .stars {
+                font-size: 16px;
+            }
+            .contact-form input, .contact-form textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .contact-form button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 20px;
+            }
+            nav ul {
+                gap: 5px;
+            }
+            nav a {
+                font-size: 12px;
+            }
+            .email {
+                font-size: 12px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            p {
+                font-size: 14px;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            .stat {
+                width: 100px;
+                height: 100px;
+                font-size: 16px;
+            }
+            .card {
+                padding: 15px;
+            }
+            .card h2 {
+                font-size: 18px;
+            }
+            .card p {
+                font-size: 13px;
+            }
+            .stars {
+                font-size: 14px;
+            }
+        }
+
+        /* Animations */
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-25px); }
+            60% { transform: translateY(-12px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1 class="rainbow-text">SnapStar</h1>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#prices">Prices</a></li>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact-form">Join Us</a></li>
+        </ul>
+        <span class="email">chris@snapchatagency.com</span>
+    </nav>
+
+    <section id="hero" class="hero">
+        <h1 class="rainbow-text">SnapStar Agency</h1>
+        <p>Unleash your Snapchat game with us—real results, real talk, no fluff.</p>
+        <a href="#contact-form"><button class="btn">Let’s Roll</button></a>
+        <div class="stats">
+            <div class="stat">500+ Clients</div>
+            <div class="stat">400M+ Views</div>
+            <div class="stat">%1,000 ROI</div>
+        </div>
+    </section>
+
+    <section id="packages" class="packages">
+        <h1>Our Packages—All Killer, No Filler</h1>
+        <div class="card-container">
+            <div class="card">
+                <h2>Starter Snap</h2>
+                <p>For the newbies dipping their toes in the Snapchat pool. We’re dropping 10 slick videos a month—quick, punchy stories that grab eyes. Content strategy’s all about your vibe, pushing it out with sneaky distro hacks. Weekly progress reports keep you posted, and we tweak shit as we go with continual reviews. AI magic? Custom filters via our SnapBot to make your brand pop. $2,000/month.</p>
+                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1974&auto=format&fit=crop" alt="Starter Snap">
+            </div>
+            <div class="card">
+                <h2>Pro Snap</h2>
+                <p>Leveling up, fam. 30 videos a month—stories, ads, some dope long-form snaps. Strategy’s laser-focused on your crew, distributed across Snapchat’s hotspots and influencer networks. Bi-weekly reports, constant performance reviews to keep the wins rolling. AI steps up with SnapSensei—predicts trends, auto-optimizes posts. Plus, our “Quantum Snap Analyzer” tracks vibes in real-time for max impact. $15,000/month.</p>
+                <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=1974&auto=format&fit=crop" alt="Pro Snap">
+            </div>
+            <div class="card">
+                <h2>Viral Snap</h2>
+                <p>For the hustlers chasing the big buzz. 50 videos a month—high-energy snaps, meme-worthy ads, and scroll-stopping stories. We’re tapping into viral hooks with a custom strategy, spreading it via niche Snapchat tribes and micro-influencers. Weekly vibe checks, monthly viral audits, and our SnapTrendz AI sniffing out what’s hot. $35,000/month.</p>
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" alt="Viral Snap">
+            </div>
+            <div class="card">
+                <h2>Elite Snap</h2>
+                <p>Big leagues—100+ videos a month, no cap. Full-on content domination: stories, ads, tutorials, behind-the-scenes. Strategy’s custom-built, hitting every Snapchat corner, blasted out with top-tier creators and ad placements. Daily reports, hourly reviews to keep it fire. SnapGod AI auto-generates content, predicts viral moments, optimizes on the fly. “Quantum Snap Matrix” rewires the algorithm in your favor—sci-fi shit, but real. $80,000/month.</p>
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" alt="Elite Snap">
+            </div>
+            <div class="card">
+                <h2>Quantum Snap</h2>
+                <p>The wild card—200+ videos a month, total Snapchat takeover. We’re throwing everything at it: ads, stories, live drops, AR filters, you name it. Strategy’s next-level, hitting global audiences with A-list creators and ad blitzes. Hourly reports, real-time tweaks, and our SnapQuantum AI rewriting the game with futuristic targeting. $150,000/month—go big or go home.</p>
+                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1974&auto=format&fit=crop" alt="Quantum Snap">
+            </div>
+        </div>
+    </section>
+
+    <section id="prices" class="prices">
+        <h1>Pricing That Means Business</h1>
+        <div class="card-container">
+            <div class="card">Starter Snap - $2K/mo</div>
+            <div class="card">Pro Snap - $15K/mo</div>
+            <div class="card">Viral Snap - $35K/mo</div>
+            <div class="card">Elite Snap - $80K/mo</div>
+            <div class="card">Quantum Snap - $150K/mo</div>
+        </div>
+        <p>Got a wild idea? We’ll craft a custom package—hit us up.</p>
+    </section>
+
+    <section id="story" class="story">
+        <h1>Our Story—Short & Sweet</h1>
+        <p>Started in 2023, we saw Snapchat was sleeping on cash potential. Turned it into a money printer with grit and hustle. Now we’re here, racking up millions of views for brands like yours.</p>
+    </section>
+
+    <section id="about" class="about">
+        <h1>About the Squad</h1>
+        <p>We’re the Snapchat crew you wish you had—creatives, ad nerds, data junkies, and a strategist who lives for this shit.</p>
+        <div class="card-container">
+            <div class="card">Jane - Creative Lead</div>
+            <div class="card">Mike - Ad Guru</div>
+            <div class="card">Sara - Data Ninja</div>
+            <div class="card">Alex - Snap Strategist</div>
+        </div>
+        <p>95% satisfaction | 24/7 hustle | 10+ years of chaos</p>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h1>What the Homies Say</h1>
+        <div class="card-container">
+            <div class="card">
+                <p>"SnapStar flipped my sales upside down—in a good way!" - @TinaTheTrailblazer</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"These guys get Snapchat like no one else." - @KevTheHustle</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"Elite Snap’s a game-changer. Worth every penny." - @JessGrowthQueen</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"My brand’s popping off now, thanks to them." - @RyanSnapKing</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Solid team, killer results." - @EmilyBizBloom</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Starter Snap got me hooked—love it!" - @DaveTheDisruptor</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"They turned my small biz into a Snapchat beast." - @LisaSnapBoss</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Pro Snap’s where it’s at—serious growth." - @MarkMoneyMaker</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"Fast, fun, and worth it." - @SarahScaleStar</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"My views went nuts with Elite Snap." - @ChrisContentCrusher</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"No one does Snapchat better." - @AlexAdWizard</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"They’re the real deal—sales up 200%." - @JenProfitJunkie</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"SnapStar’s crew knows their stuff." - @TonyTrendSetter</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"Quick wins with Starter Snap." - @KimLaunchLady</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Pro Snap leveled up my game." - @NickNextLevel</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Elite Snap’s insane—total domination." - @LauraSnapLegend</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"Best investment I’ve made." - @SamStartupSamurai</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"They make Snapchat work for me." - @RachelRevenueRockstar</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"Solid vibes, solid results." - @PetePixelPusher</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Starter Snap’s a steal for what you get." - @AmyActionTaker</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"Pro Snap turned heads my way." - @JakeTheJetsetter</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Elite Snap’s next-level shit." - @MichelleMillionMindset</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"They’re fast and good—love it." - @BenBrandBuilder</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"SnapStar’s the Snapchat plug." - @KellyCashFlowKween</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"My ROI’s through the roof!" - @DanDigitalDynamo</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Starter Snap got me rolling quick." - @SophieSnapStrategist</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card small">
+                <p>"Pro Snap’s a vibe—sales up!" - @MattMomentumMatt</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"Elite Snap’s worth every dime." - @OliviaOfferOracle</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card large">
+                <p>"They crushed it for my brand." - @GregGrowthGuru</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="card">
+                <p>"SnapStar’s team is fire." - @HannahHustleHero</p>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta">
+        <h1>Ready to Run Snapchat?</h1>
+        <p>Let’s turn your brand into the talk of the app. Hit the button.</p>
+        <a href="#contact-form"><button class="btn">Get at Us</button></a>
+    </section>
+
+    <section id="contact-form" class="contact-form">
+        <h1>Join the SnapStar Crew</h1>
+        <p>Drop your info, and let’s get this party started!</p>
+        <form action="mailto:chris@snapchatagency.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="company" placeholder="Your Company (Optional)">
+            <textarea name="message" placeholder="Tell us your Snapchat dreams..." required></textarea>
+            <button type="submit">Send It</button>
+        </form>
+    </section>
+</body>
+</html>
